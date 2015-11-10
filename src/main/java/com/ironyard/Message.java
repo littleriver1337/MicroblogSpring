@@ -7,19 +7,22 @@ import javax.persistence.*;
  */
 @Entity
 public class Message {
+    @Id
+    @GeneratedValue
+    Integer id;
     String text;
-    int id;
+    String username;
+    String password;
 
-    public Message(String text, int id) {
-        this.text = text;
+
+    public Message(){
+
+    }
+
+    public Message(Integer id, String text, String username, String password) {
         this.id = id;
-    }
-
-    public String getText() {
-        return text;
-    }
-
-    public int getId() {
-        return id;
+        this.text = text;
+        this.username = username;
+        this.password = password;
     }
 }
