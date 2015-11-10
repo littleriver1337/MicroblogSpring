@@ -30,9 +30,9 @@ public class ControllerMain {
         return "redirect:/";
     }
     @RequestMapping("/add-message")
-    public String addMessage(String text){
+    public String addMessage(String msgtext){
         int id = messages.size() + 1;
-        Message message = new Message(text, id);
+        Message message = new Message(msgtext, id);
         messages.add(message);
         return "redirect:/";
     }
