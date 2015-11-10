@@ -1,8 +1,11 @@
 package com.ironyard;
 
+import javax.persistence.*;
+
 /**
  * Created by MattBrown on 11/9/15.
  */
+@Entity
 public class Message {
     String text;
     int id;
