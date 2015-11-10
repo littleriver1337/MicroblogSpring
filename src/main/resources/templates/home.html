@@ -19,14 +19,15 @@
     <button type = "submit">Add</button>
 </form>
 
-Messages by {{username}}
+Messages by {{username}}<br>
 
 {{#messages}}
 {{id}}. {{text}}
-<form action = "delete-message" method = "post">
+<form action = "delete-message" method = "post" style = "display: inline;">
     <input type = "hidden" value = "{{id}}" name = "id"/>
     <button type = "submit">Remove</button>
 </form>
+<br>
 {{/messages}}
 {{/username}}
 </body>
