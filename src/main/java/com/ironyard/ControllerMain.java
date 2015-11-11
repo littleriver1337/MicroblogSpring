@@ -22,14 +22,17 @@ public class ControllerMain {
     public String home(Model model, HttpServletRequest request){
         HttpSession session = request.getSession();
         String username = (String) session.getAttribute("username");
+        String password = (String) session.getAttribute("password");
         model.addAttribute("username", username);
         model.addAttribute("messages", messages.findAll());
+        model.addAttribute("password", password);
         return "home";
     }
     @RequestMapping("/login")
-    public String login(HttpServletRequest request, String username) {
+    public String login(HttpServletRequest request, String username, String password) {
         HttpSession session = request.getSession();
         session.setAttribute("username", username);
+        session.setAttribute("password", password);
         return "redirect:/";
     }
     @RequestMapping("/add-message")
@@ -46,12 +49,23 @@ public class ControllerMain {
         messages.delete(id);
         return "redirect:/";
     }
-    @RequestMapping("edit-message")
-    public String editMessage(Integer id, String text){
+    @RequestMapping("/edit")
+    public String edit(Model model, Integer id){
         Message message = messages.findOne(id);
-        message.text = text;
+        model.addAttribute("message", message);
+        messages.save(message);
+        return "edit";
+    }
+    @RequestMapping("edit-message")
+    public String editMessage(Integer id, String msgtext){
+        Message message = messages.findOne(id);
+        if (message != null){
+            message.text = msgtext;
+
+        }
         messages.save(message);
         return "redirect:/";
+
     }
 
 }
